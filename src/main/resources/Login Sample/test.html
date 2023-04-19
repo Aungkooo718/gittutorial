@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enable Monday to Friday only in jQuery UI datepicker</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <style>
+        .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.search-container button:hover {
+  background: #ccc;
+}
+.search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 42%;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.search-container {
+  
+  display: inline;
+}
+table.table td a {
+cursor: pointer;
+display: inline-block;
+margin: 0 5px;
+min-width: 24px;
+}
+table.table td a.add {
+color: #27C46B;
+}
+table.table td a.edit {
+color: #FFC107;
+}
+table.table td a.delete {
+color: #E34724;
+}
+table.table td i {
+font-size: 19px;
+}
+table.table td a.add i {
+font-size: 24px;
+margin-right: -1px;
+position: relative;
+top: 3px;
+}
+.material-icons:hover {
+  color: #009879; /* Change color on hover */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+.edit:hover {
+  color: #FFC107; /* Change color on hover */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+.delete:hover {
+  color: #E34724; /* Change color on hover */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+.material-icons
+    {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  color: #007bff;
+  text-decoration: none;
+}
+.material-icons:hover .edit,.delete {
+  visibility: visible;
+  opacity: 1;
+}
+.material-icons .edit {
+  visibility: hidden;
+  width: 120px;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.material-icons .edit::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #007bff transparent transparent transparent;
+}
+
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <form action="/action_page.php">
+          <input style="margin-left: 40%;margin-top: 10px;height:20px;" height="50px;" type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    <table class="styled-table table" style="margin-left: 500px;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Points</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Dom</td>
+                <td>6000</td>
+                <td><a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                    <a class="delete" title="Delete" data-toggle="tooltip"><i style="color:red;" class="material-icons">&#xE872;</i></a></td>
+            </tr>
+            <tr class="active-row">
+                <td>Melissa</td>
+                <td>5150</td>
+                <td><a class="edit" title="Edit"><i class="material-icons">edit</i></a>
+                    <a class="delete" title="Delete"><i class="material-icons">delete</i></a>
+                    </td>
+            </tr>
+            <!-- and so on... -->
+        </tbody>
+    </table>
+</body>
+</html>

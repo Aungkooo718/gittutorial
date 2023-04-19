@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grid Practice</title>
+    <style>
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 20px;
+        row-gap: 20px;
+      }
+      .grid-item-4 {
+        grid-column: span 4;
+        background-color: lightblue;
+        padding: 20px;
+      }
+      .grid-item-8 {
+        grid-column: span 8;
+        background-color: lightpink;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body> 
+    <div class="grid-container">
+        <div class="grid-item-4">Box 1 (4 units)</div>
+        <div class="grid-item-8">Box 2 (8 units)</div>
+      </div>
+  </body>
+</html>

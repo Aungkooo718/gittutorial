@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <style>
+    .selected {
+  background-color: blue;
+}
+.fc-day.selected {
+  background-color: blue;
+}
+
+.fc-day.selected:hover {
+  background-color: darkblue;
+}
+
+.fc-day:not(.selected):hover {
+  background-color: #eee;
+}
+
+.fc-day:not(.selected):nth-child(7n+1),
+.fc-day:not(.selected):nth-child(7n) {
+  background-color: #f5f5f5;
+}
+
+.selected {
+  background-color: blue;
+}
+#calendar {
+  width: 800px !important;
+}
+
+.fc-view-container {
+  width: 800px !important;
+}
+
+.fc-view {
+  width: 800px !important;
+}
+
+.fc-scroller {
+  width: 800px !important;
+}
+
+.fc-time-grid-container {
+  width: 800px !important;
+}
+
+
+
+  </style>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+</head>
+<body>
+  <div id='calendar'></div>
+  <input type="hidden" id="registerlunch">
+  <script>
+    var selectedDates = [];
+    var holidays = ['2023-04-11', '2023-04-13', '2023-04-19'];
+
+// Initialize the calendar
+$('#calendar').fullCalendar({
+  // options
+  height:500,
+  // Use the dayRender callback to add red background color to weekend days
+  dayRender: function(date, cell) {
+    var day = date.day();
+    if (day === 0 || day === 6) {
+        cell.css('background-color', 'red');
+      cell.addClass('disabled');
+      cell.data('selectable', false);
+    }
+    //com
+    if (holidays.indexOf(date.format('YYYY-MM-DD')) !== -1) {
+      cell.css('background-color', 'green');
+      cell.addClass('selected');
+      cell.data('selectable', false);
+      //selectedDates.push(date.format('YYYY-MM-DD'));
+    }
+  }
+});
+
+// Handle click event on date cells
+$('#calendar').on('click', '.fc-day', function() {
+  // Get the date of the clicked cell
+  var date = $(this).attr('data-date');
+  date = moment(date).format('YYYY-MM-DD');
+  // Check if the cell is selectable
+  if ($(this).data('selectable') !== false) {
+    // Check if the date is already selected
+    if ($(this).hasClass('selected')) {
+      // Unselect the date
+      $(this).removeClass('selected');
+      // Remove the date from the selected dates list
+      var index = selectedDates.indexOf(date);
+      if (index !== -1) {
+        selectedDates.splice(index, 1);
+      }
+    } else {
+      // Select the date
+      $(this).addClass('selected');
+      // Add the date to the selected dates list, only if it's not a holiday or weekend day
+      if (holidays.indexOf(date) === -1 && $(this).hasClass('disabled') === false) {
+        selectedDates.push(date);
+      }
+    }
+    // Log the current selection for debugging purposes
+    console.log(selectedDates);
+    // Update the hidden input value with the selected dates
+    $('#registerlunch').val(selectedDates.join(','));
+    alert("result is " + $('#registerlunch').val());
+    var selectedDays = $('#registerlunch').val().split(',');
+for (var i = 0; i < selectedDates.length; i++) {
+  console.log("your choose date is"+selectedDays[i]);
+}
+
+  }
+});
+
+
+  </script>
+</body>
+</html>

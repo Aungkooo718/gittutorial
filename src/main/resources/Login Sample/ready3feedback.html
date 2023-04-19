@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+    <style>
+        /* Style for the dialog box */
+        #feedbackDialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        #feedbackDialog .dialogContent {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background-color: YellowGreen;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="showFeedbackDialog()">Give Feedback</button>
+    
+    <div id="feedbackDialog">
+        <div class="dialogContent">
+            <h2>Feedback</h2>
+            <form>
+                <label for="feedback">Please enter your feedback:</label><br>
+                <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br><br>
+                <button type="submit">Submit</button>
+                <button type="button" onclick="hideFeedbackDialog()">Cancel</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function showFeedbackDialog() {
+            document.getElementById("feedbackDialog").style.display = "block";
+        }
+        
+        function hideFeedbackDialog() {
+            document.getElementById("feedbackDialog").style.display = "none";
+        }
+        
+        // Submit the feedback form using AJAX
+        // ...
+
+        // Display a thank you message to the user using an alert box
+        function displayThankYouMessage() {
+            alert("Thank you for your feedback!");
+            hideFeedbackDialog();
+        }
+        
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Submit the form using AJAX and then display the thank you message
+            displayThankYouMessage();
+        });
+    </script>
+</body>
+</html>
